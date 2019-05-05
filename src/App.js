@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 
+const useFetch = (url) =>{
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+     const response = await fetch(url);
+     const data = await response.json();
+     const [info] = data.results;
+     setData(info);
+     setLoading(false);
+    })();
+  }, [url]);
+  
+  return {data, loading};
+}
+
 function App() {
+  const [count, setCount] = useState(0);
+  const {data, loading} = useFetch(`https://api.randomuser.me/`);
+
+  useEffect(() => {
+     
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <button onClick={() => setCount(count+1)}><h1>Click Me</h1></button>
+     <h1>{count}</h1>
+     {loading ? <h1>Loading...</h1> : <h1>{data.name.first}</h1>}
     </div>
   );
 }
