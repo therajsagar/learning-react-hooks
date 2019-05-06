@@ -18,14 +18,10 @@ const useFetch = (url) =>{
   return {data, loading};
 }
 
-function App() {
+const App = () => {
   const [count, setCount] = useState(0);
   const {data, loading} = useFetch(`https://api.randomuser.me/`);
-
-  useEffect(() => {
-     
-  }, []);
-
+  
   return (
     <div className="App">
      <button onClick={() => setCount(count+1)}><h1>Click Me</h1></button>
