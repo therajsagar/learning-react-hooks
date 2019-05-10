@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import MyApp from './MyApp';
 import './App.css';
 
 const useFetch = (url) =>{
@@ -26,7 +27,8 @@ const App = () => {
     <div className="App">
      <button onClick={() => setCount(count+1)}><h1>Click Me</h1></button>
      <h1>{count}</h1>
-     {loading ? <h1>Loading...</h1> : <h1>{data.name.first}</h1>}
+     {loading ? <h1>Loading...</h1> : <h2>{data.name.first}</h2>}
+     <MyApp/>
     </div>
   );
 }
