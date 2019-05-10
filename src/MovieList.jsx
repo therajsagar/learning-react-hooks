@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import Movie from './Movie';
+import { MovieContext } from './MovieContext';
 
 const MovieList = () => {
-  const [movies, setMovies] = useState([
-    { name: 'MI 6', actor: 'Tom Cruise', year: 2018 },
-    { name: 'AquaMan', actor: 'Jason Momoa', year: 2018 },
-    { name: 'Venom', actor: 'Tom Hardy', year: 2018 }
-  ]);
+  const movies = useContext(MovieContext)[0];
   return (
-    <>
-      {movies.map(movie => (
-        <li>{movie.name}</li>
+    <div className='Movie-list'>
+      {movies.map((props, index) => (
+        <Movie name={props.name} actor={props.actor} key={index} />
       ))}
-    </>
+    </div>
   );
 };
 
