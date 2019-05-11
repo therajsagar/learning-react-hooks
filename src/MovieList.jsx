@@ -3,7 +3,7 @@ import Movie from './Movie';
 import { MovieContext } from './MovieContext';
 
 const MovieList = () => {
-  const movies = useContext(MovieContext)[0];
+  const movies = useContext(MovieContext);
   return (
     <div className='Movie-list'>
       {movies.map((props, index) => (

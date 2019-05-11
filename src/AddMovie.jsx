@@ -1,35 +1,31 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useRef, useReducer } from 'react';
 import { MovieContext } from './MovieContext';
+import MovieReducer from './reducer';
 
 const AddMovie = () => {
-  const [name, setName] = useState('');
-  const [actor, setActor] = useState('');
-  const setMovies = useContext(MovieContext)[1];
+  const name = useRef();
+  const actor = useRef();
+  const movies = useContext(MovieContext);
+  const dispatch = useReducer(MovieReducer, movies)[1];
 
   const addMovie = e => {
     e.preventDefault();
-    if (e.target.name.value !== '' && e.target.actor.value) {
-      setMovies(prevState => [...prevState, { name, actor }]);
-      setName('');
-      setActor('');
+    if (name.current.value !== '' && actor.current.value !== '') {
+      dispatch({
+        type: 'ADD',
+        name: name.current.value,
+        actor: actor.current.value
+      });
+      name.current.value = '';
+      actor.current.value = '';
     }
   };
 
   return (
     <form onSubmit={addMovie}>
-      <input
-        type='text'
-        value={name}
-        name='name'
-        onChange={e => setName(e.target.value)}
-      />
-      <input
-        type='text'
-        value={actor}
-        name='actor'
-        onChange={e => setActor(e.target.value)}
-      />
-      <button>Add</button>
+      <input type='text' name='name' ref={name} autoComplete='off' />
+      <input type='text' name='actor' ref={actor} autoComplete='off' />
+      <button className='add'>Add</button>
     </form>
   );
 };

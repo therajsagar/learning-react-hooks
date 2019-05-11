@@ -2,3 +2,27 @@
   text-align: center;
   margin: 50px;
 }
+
+.remove,
+.add {
+  border-color: skyblue;
+  font-size: 12.5px;
+  margin-left: 10px;
+  border-width: 2px;
+}
+
+input {
+  margin: 7.5px;
+  font-size: 13.5px;
+  padding: 5px;
+}
+
+.remove:hover {
+  border-color: red;
+  color: darkblue;
+}
+
+.add:hover {
+  border-color: limegreen;
+  color: seagreen;
+}
