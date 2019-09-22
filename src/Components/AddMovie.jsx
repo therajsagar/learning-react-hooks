@@ -1,16 +1,14 @@
-import React, { useContext, useRef, useReducer } from 'react';
-import { MovieContext } from './MovieContext';
-import MovieReducer from './reducer';
+import React, { useContext, useRef } from 'react';
+import { MovieContext } from '../Context/MovieContext';
 
-const AddMovie = () => {
+export default function AddMovie() {
   const name = useRef();
   const actor = useRef();
-  const movies = useContext(MovieContext);
-  const dispatch = useReducer(MovieReducer, movies)[1];
+  const { dispatch } = useContext(MovieContext);
 
   const addMovie = e => {
     e.preventDefault();
-    if (name.current.value !== '' && actor.current.value !== '') {
+    if (name.current.value.trim() && actor.current.value.trim()) {
       dispatch({
         type: 'ADD',
         name: name.current.value,
@@ -28,6 +26,4 @@ const AddMovie = () => {
       <button className='add'>Add</button>
     </form>
   );
-};
-
-export default AddMovie;
+}

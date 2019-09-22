@@ -1,16 +1,15 @@
-import React, { useContext, useReducer, useRef } from 'react';
-import MovieReducer from './reducer';
-import { MovieContext } from './MovieContext';
+import React, { useContext, useRef } from 'react';
+import { MovieContext } from '../Context/MovieContext';
 
-const Movie = ({ name, actor }) => {
-  const movies = useContext(MovieContext);
+export default function Movie({ name, actor }) {
+  const { dispatch } = useContext(MovieContext);
   const nameInput = useRef(name);
-  const dispatch = useReducer(MovieReducer, movies)[1];
 
   const removeMovie = () => {
     const name = nameInput.current.innerText;
     dispatch({ type: 'REMOVE', name });
   };
+
   return (
     <div>
       <p>
@@ -24,6 +23,4 @@ const Movie = ({ name, actor }) => {
       </p>
     </div>
   );
-};
-
-export default Movie;
+}

@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
-import { MovieContext } from './MovieContext';
+import { MovieContext } from '../Context/MovieContext';
 
-const Nav = () => {
-  const movies = useContext(MovieContext);
+export default function Nav() {
+  const { movies } = useContext(MovieContext);
   return (
     <div className='Nav'>
       <h2>Number of Movies: {movies.length}</h2>
     </div>
   );
-};
-
-export default Nav;
+}

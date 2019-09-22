@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Movie from './Movie';
-import { MovieContext } from './MovieContext';
+import { MovieContext } from '../Context/MovieContext';
 
-const MovieList = () => {
-  const movies = useContext(MovieContext);
+export default function MovieList() {
+  const { movies } = useContext(MovieContext);
   return (
     <div className='Movie-list'>
       {movies.map((props, index) => (
@@ -11,6 +11,4 @@ const MovieList = () => {
       ))}
     </div>
   );
-};
-
-export default MovieList;
+}
